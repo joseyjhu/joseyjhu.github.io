@@ -2,43 +2,244 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Josey Hu</title>
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0b0c;
       color: #f5f5f5;
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 24px;
     }
-    .card {
-      max-width: 700px;
-      background: #1b1b1b;
-      border: 1px solid #2d2d2d;
-      border-radius: 20px;
-      padding: 40px;
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
     }
+
+    nav {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      background: #1a1a1d;
+      border: 1px solid #2a2a2d;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    button.active {
+      background: white;
+      color: black;
+    }
+
     h1 {
-      margin-top: 0;
-      font-size: 3rem;
+      font-size: 48px;
+      margin: 0;
     }
-    p {
-      color: #cfcfcf;
-      line-height: 1.6;
-      font-size: 1.1rem;
+
+    .subtitle {
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #151517;
+      border: 1px solid #26262a;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 14px;
+    }
+
+    .meta {
+      color: #888;
+      font-size: 13px;
+    }
+
+    .blurb {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #ccc;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
     }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Josey Hu</h1>
-    <p>Welcome to my personal site.</p>
-    <p>Publications and favorites coming soon.</p>
+
+<div class="container">
+
+  <h1>Josey Hu</h1>
+  <p class="subtitle">Operator, writer, and collector of things I love</p>
+
+  <nav>
+    <button onclick="showPage('home')" class="active">Home</button>
+    <button onclick="showPage('pubs')">Publications</button>
+    <button onclick="showPage('favorites')">Favorites</button>
+  </nav>
+
+  <!-- HOME -->
+  <div id="home" class="section active">
+    <p>
+      I work across AI, strategy, and creative systems.
+      This site is a home for my publications and a living archive of things I keep returning to.
+    </p>
   </div>
+
+  <!-- PUBLICATIONS -->
+  <div id="pubs" class="section">
+    <div class="grid">
+      <div class="card">
+        <div class="card-content">
+          <strong>Humanity's Last Exam</strong>
+          <div class="meta">2025 • Research</div>
+          <div class="blurb">
+            A benchmark evaluating reasoning across diverse domains.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVORITES -->
+  <div id="favorites" class="section">
+
+    <div class="tabs">
+      <button onclick="showTab('books')" class="active">Books</button>
+      <button onclick="showTab('paintings')">Paintings</button>
+      <button onclick="showTab('games')">Games</button>
+      <button onclick="showTab('movies')">Movies & Shows</button>
+      <button onclick="showTab('anime')">Anime & Manga</button>
+    </div>
+
+    <div id="books" class="tab active grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" />
+        <div class="card-content">
+          <strong>Tomorrow, and Tomorrow, and Tomorrow</strong>
+          <div class="meta">Gabrielle Zevin • 2022</div>
+          <div class="blurb">
+            A story about friendship, ambition, and building worlds together.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="paintings" class="tab grid" style="display:none;">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/John_William_Waterhouse_-_The_Lady_of_Shalott.jpg" />
+        <div class="card-content">
+          <strong>The Lady of Shalott</strong>
+          <div class="meta">Waterhouse • 1888</div>
+          <div class="blurb">
+            A suspended moment between devotion and inevitability.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="games" class="tab grid" style="display:none;">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420" />
+        <div class="card-content">
+          <strong>Outer Wilds</strong>
+          <div class="meta">2019</div>
+          <div class="blurb">
+            A game about curiosity and the limits of knowledge.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="movies" class="tab grid" style="display:none;">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba" />
+        <div class="card-content">
+          <strong>Arrival</strong>
+          <div class="meta">2016</div>
+          <div class="blurb">
+            Language, time, and grief woven together.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="anime" class="tab grid" style="display:none;">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477" />
+        <div class="card-content">
+          <strong>Steins;Gate</strong>
+          <div class="meta">2011</div>
+          <div class="blurb">
+            A slow burn that locks perfectly into place.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function showPage(page) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.style.display = 'none');
+  document.getElementById(tab).style.display = 'grid';
+
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+
 </body>
 </html>
