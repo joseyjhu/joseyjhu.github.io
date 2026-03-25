@@ -1,75 +1,43 @@
-/* ===== BRUTALIST MODE ===== */
+:root {
+  }
 
-body.brutalist {
-  background: #f4f4f4;
-  color: black;
-  font-family: Arial, sans-serif;
+  .landing-grid {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .landing-cell {
+    min-height: 220px;
+  }
+
+  .landing-portrait {
+    min-height: 420px;
+  }
 }
 
-/* GRID LAYOUT */
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: auto auto;
-  height: 100vh;
-}
+@media (max-width: 760px) {
+  .site-shell {
+    width: min(calc(100% - 20px), 1180px);
+  }
 
-/* BOXES */
-.box {
-  border: 2px solid black;
-  padding: 30px;
-}
+  .topbar {
+    border-radius: 26px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-/* TOP */
-.logo h1 {
-  font-size: 28px;
-  font-weight: bold;
-}
+  .page-header,
+  .section-block,
+  .publication-card,
+  .favorite-subgroup {
+    padding: 22px;
+  }
 
-.logo span {
-  text-decoration: underline;
-}
-
-.tagline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-style: italic;
-}
-
-.nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.nav li {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.nav a {
-  color: black;
-  text-decoration: none;
-}
-
-/* MAIN */
-.main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.main h2 {
-  font-size: 36px;
-  font-weight: 900;
-}
-
-/* SIDE PANELS */
-.left, .right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-style: italic;
+  .landing-intro,
+  .landing-nav,
+  .landing-socials {
+    padding: 24px;
+  }
 }
