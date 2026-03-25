@@ -1,45 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Favorites</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorites | Josey Hu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">Josey Hu</a>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="publications.html">Publications</a>
+        <a class="nav-link active" href="favorites.html">Favorites</a>
+      </nav>
+    </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="publications.html">Publications</a>
-  <a href="favorites.html">Favorites</a>
-</nav>
+    <main>
+      <section class="page-header page-header-tight">
+        <p class="eyebrow">Favorites</p>
+        <h1>A curated archive of things I love.</h1>
+        <p class="lede narrow">
+          Organized less like a ranking and more like a personal library: books, short stories, films, shows, anime, webtoons, animated movies, and favorite games.
+        </p>
+      </section>
 
-<div class="container">
-  <h1>Favorites</h1>
+      <section class="section-block category-index-section">
+        <div class="section-heading-row compact-gap">
+          <div>
+            <p class="eyebrow">Browse</p>
+            <h2>Choose a shelf.</h2>
+          </div>
+        </div>
+        <div class="category-index" id="categoryIndex"></div>
+      </section>
 
-  <h2>Books</h2>
-  <div class="grid">
-    <div class="card">The Alchemist</div>
-    <div class="card">Dune Series</div>
-    <div class="card">Tomorrow, and Tomorrow, and Tomorrow</div>
-    <div class="card">Never Let Me Go</div>
+      <section class="section-block content-section">
+        <div id="favoritesContent"></div>
+      </section>
+    </main>
   </div>
 
-  <h2>Movies</h2>
-  <div class="grid">
-    <div class="card">Interstellar</div>
-    <div class="card">Whiplash</div>
-    <div class="card">Crouching Tiger, Hidden Dragon</div>
-    <div class="card">The Dark Knight</div>
-  </div>
-
-  <h2>Games</h2>
-  <div class="grid">
-    <div class="card">Outer Wilds</div>
-    <div class="card">Undertale</div>
-    <div class="card">Hollow Knight</div>
-    <div class="card">Disco Elysium</div>
-  </div>
-
-</div>
-
+  <script src="script.js"></script>
 </body>
 </html>
