@@ -1,27 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Publications</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications | Josey Hu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">Josey Hu</a>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="publications.html">Publications</a>
+        <a class="nav-link" href="favorites.html">Favorites</a>
+      </nav>
+    </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="publications.html">Publications</a>
-  <a href="favorites.html">Favorites</a>
-</nav>
+    <main>
+      <section class="page-header">
+        <p class="eyebrow">Publications</p>
+        <h1>Writing, research, and selected work.</h1>
+        <p class="lede narrow">
+          A small shelf for papers, essays, and projects. This can grow over time as you add links, PDFs, talks, and other writing.
+        </p>
+      </section>
 
-<div class="container">
-  <h1>Publications</h1>
+      <section class="section-block">
+        <div class="stacked-cards">
+          <article class="publication-card">
+            <div class="publication-topline">
+              <span class="pill">Research</span>
+              <span class="year">2025</span>
+            </div>
+            <h2>Humanity's Last Exam</h2>
+            <p>
+              A benchmark evaluating frontier model reasoning across a wide range of subjects.
+            </p>
+            <div class="publication-links">
+              <a class="button button-small" href="#">Add link</a>
+            </div>
+          </article>
 
-  <div class="card">
-    <h2>Humanity's Last Exam</h2>
-    <p class="meta">2025 • Research</p>
-    <p>A benchmark evaluating reasoning across diverse domains.</p>
+          <article class="publication-card muted-card">
+            <div class="publication-topline">
+              <span class="pill">Coming soon</span>
+            </div>
+            <h2>More publications</h2>
+            <p>
+              Add papers, essays, interviews, talks, articles, or selected writing here as you publish them.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
   </div>
-
-</div>
-
 </body>
 </html>
