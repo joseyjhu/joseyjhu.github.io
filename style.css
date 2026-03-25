@@ -1,7 +1,219 @@
 :root {
+  --bg: #efefef;
+  --ink: #111111;
+  --line: #111111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+body.landing-body {
+  background: var(--bg);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.landing-grid {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.landing-cell {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  border: 3px solid var(--line);
+  background: var(--bg);
+}
+
+.landing-name,
+.landing-intro,
+.landing-nav,
+.landing-empty,
+.landing-portrait,
+.landing-socials {
+  display: flex;
+}
+
+.landing-name {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.landing-name-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+}
+
+.landing-first-name,
+.landing-last-name {
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: clamp(3.4rem, 6vw, 6.2rem);
+}
+
+.landing-intro {
+  align-items: center;
+  justify-content: center;
+  padding: 36px 54px;
+  text-align: center;
+}
+
+.landing-intro p {
+  max-width: 34rem;
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.45rem, 2.4vw, 2.3rem);
+  line-height: 1.2;
+}
+
+.landing-nav {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 34px 30px;
+}
+
+.landing-nav ul,
+.landing-socials ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.landing-nav li,
+.landing-socials li {
+  margin: 0 0 10px;
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-weight: 700;
+}
+
+.landing-nav a,
+.landing-socials a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.landing-nav a:hover,
+.landing-socials a:hover {
+  text-decoration: underline;
+}
+
+.landing-empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-portrait {
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px;
+}
+
+.landing-portrait-image {
+  width: min(50vh, 88%);
+  max-height: 88%;
+  object-fit: contain;
+  filter: grayscale(100%);
+}
+
+.landing-socials {
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+  text-align: left;
+}
+
+.landing-socials-label {
+  margin: 0 0 14px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.2vw, 2.3rem);
+}
+
+.landing-icon {
+  position: absolute;
+  color: var(--ink);
+  opacity: 0.92;
+}
+
+.landing-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-icon-star {
+  top: 22px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+}
+
+.landing-icon-rocket {
+  top: 18px;
+  left: 24px;
+  width: 52px;
+  height: 52px;
+}
+
+.landing-icon-note {
+  bottom: 24px;
+  left: 32px;
+  width: 42px;
+  height: 42px;
+}
+
+.landing-icon-book {
+  bottom: 28px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+}
+
+.landing-icon-pencil {
+  top: 48%;
+  left: 7%;
+  width: 40px;
+  height: 40px;
+}
+
+.landing-icon-brush {
+  top: 17%;
+  right: 9%;
+  width: 44px;
+  height: 44px;
+}
+
+@media (max-width: 1100px) {
+  body.landing-body {
+    overflow: auto;
   }
 
   .landing-grid {
+    width: 100%;
     height: auto;
     min-height: 100vh;
     grid-template-columns: 1fr;
@@ -14,30 +226,5 @@
 
   .landing-portrait {
     min-height: 420px;
-  }
-}
-
-@media (max-width: 760px) {
-  .site-shell {
-    width: min(calc(100% - 20px), 1180px);
-  }
-
-  .topbar {
-    border-radius: 26px;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .page-header,
-  .section-block,
-  .publication-card,
-  .favorite-subgroup {
-    padding: 22px;
-  }
-
-  .landing-intro,
-  .landing-nav,
-  .landing-socials {
-    padding: 24px;
   }
 }
