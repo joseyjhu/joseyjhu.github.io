@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_SITE_URL:
       isGitHubPages
-        ? "https://joseyjhu.github.io"
+        ? "https://joseyhu.com"
         : process.env.FIGMA_PUBLIC_URL || "http://localhost:3000",
     // NOTE: Do not add FIGMA_OAUTH_CLIENT_SECRET, FIGMA_CONTENT_API_ACCESS_KEY,
     // or any other credential here. Values placed in `env` are inlined into
