@@ -38,91 +38,152 @@ function SteamIcon() {
 }
 
 export function ContactForm() {
+  const [senderEmail, setSenderEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [message, setMessage] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState("")
 
-  async function send() {
-    if (!message.trim()) {
-      setStatus("An empty note is very avant-garde, but write something first.")
+  async function send(event?: React.FormEvent) {
+    if (event) {
+      event.preventDefault()
+    }
+
+    const trimmedEmail = senderEmail.trim()
+    const trimmedSubject = subject.trim()
+    const trimmedBody = message.trim()
+
+    if (!trimmedEmail) {
+      setStatus("Please enter your email.")
       return
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(trimmedEmail)) {
+      setStatus("Please enter a valid email address.")
+      return
+    }
+
+    if (!trimmedSubject) {
+      setStatus("Please enter a subject.")
+      return
+    }
+
+    if (!trimmedBody) {
+      setStatus("Please enter the body of your note.")
+      return
+    }
+
+    setIsSubmitting(true)
     setStatus("Sending…")
 
+    const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID || "xzzblkgv"
+
     try {
-      const response = await fetch("https://formspree.io/f/xzzblkgv", {
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: message.trim(),
-          name: subject.trim() || "Anonymous",
+          email: trimmedEmail,
+          _replyto: trimmedEmail,
+          subject: trimmedSubject,
+          name: trimmedSubject,
+          message: trimmedBody,
         }),
       })
 
-      if (!response.ok) throw new Error("Submission failed")
+      if (!response.ok) {
+        let errDetail = ""
+        try {
+          const data = await response.json()
+          if (
+            data?.errors &&
+            Array.isArray(data.errors) &&
+            data.errors.length > 0
+          ) {
+            errDetail = data.errors
+              .map((e: { message: string }) => e.message)
+              .join(", ")
+          }
+        } catch {}
+        throw new Error(errDetail || "Submission failed")
+      }
 
+      setSenderEmail("")
       setSubject("")
       setMessage("")
       setStatus("Note sent! Talk soon.")
-    } catch {
-      setStatus("Something went wrong — email me directly at")
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error &&
+        err.message &&
+        err.message !== "Submission failed"
+          ? `Could not send: ${err.message}`
+          : "Something went wrong while sending your note. Please try again later or reach out via the links below."
+      setStatus(msg)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
     <>
       <section className="mt-12 rounded-[var(--ds-radius-lg)] border border-white/7 bg-[rgba(18,16,12,0.82)] p-7 backdrop-blur-lg">
-        <div className="flex flex-col gap-5">
+        <form onSubmit={send} className="flex flex-col gap-5">
           <label className="flex flex-col gap-2 text-xs text-[var(--ds-neutral-400)]">
-            Subject?
+            Your email
             <input
-              value={subject}
-              onChange={(event) => setSubject(event.target.value)}
-              placeholder="Hello!"
-              className="w-full rounded-[var(--ds-radius-md)] border border-[var(--ds-neutral-800)] bg-[var(--ds-bg)] px-3 py-3 text-sm text-[var(--ds-text)] outline-none focus:border-[var(--ds-accent-600)]"
+              type="email"
+              required
+              value={senderEmail}
+              onChange={(event) => setSenderEmail(event.target.value)}
+              placeholder="you@example.com"
+              disabled={isSubmitting}
+              className="w-full rounded-[var(--ds-radius-md)] border border-[var(--ds-neutral-800)] bg-[var(--ds-bg)] px-3 py-3 text-sm text-[var(--ds-text)] outline-none focus:border-[var(--ds-accent-600)] disabled:opacity-50"
             />
           </label>
           <label className="flex flex-col gap-2 text-xs text-[var(--ds-neutral-400)]">
-            The note
+            The subject
+            <input
+              type="text"
+              required
+              value={subject}
+              onChange={(event) => setSubject(event.target.value)}
+              placeholder="Hello!"
+              disabled={isSubmitting}
+              className="w-full rounded-[var(--ds-radius-md)] border border-[var(--ds-neutral-800)] bg-[var(--ds-bg)] px-3 py-3 text-sm text-[var(--ds-text)] outline-none focus:border-[var(--ds-accent-600)] disabled:opacity-50"
+            />
+          </label>
+          <label className="flex flex-col gap-2 text-xs text-[var(--ds-neutral-400)]">
+            The body
             <textarea
+              required
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               placeholder="Dear Josey, there is no chance I'm watching 1,000 episodes of One Piece…"
               rows={6}
-              className="w-full resize-y rounded-[var(--ds-radius-md)] border border-[var(--ds-neutral-800)] bg-[var(--ds-bg)] px-3 py-3 text-sm leading-relaxed text-[var(--ds-text)] outline-none focus:border-[var(--ds-accent-600)]"
+              disabled={isSubmitting}
+              className="w-full resize-y rounded-[var(--ds-radius-md)] border border-[var(--ds-neutral-800)] bg-[var(--ds-bg)] px-3 py-3 text-sm leading-relaxed text-[var(--ds-text)] outline-none focus:border-[var(--ds-accent-600)] disabled:opacity-50"
             />
           </label>
           <div className="flex flex-wrap items-center gap-4">
             <button
-              type="button"
-              onClick={send}
-              className="font-heading cursor-pointer rounded-[var(--ds-radius-md)] border border-[var(--ds-accent)] bg-transparent px-6 py-2.5 text-sm font-medium text-[var(--ds-accent-300)] transition-colors hover:bg-[var(--ds-accent-900)]"
+              type="submit"
+              disabled={isSubmitting}
+              className="font-heading cursor-pointer rounded-[var(--ds-radius-md)] border border-[var(--ds-accent)] bg-transparent px-6 py-2.5 text-sm font-medium text-[var(--ds-accent-300)] transition-colors hover:bg-[var(--ds-accent-900)] disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Up, up, and away →
+              {isSubmitting ? "Sending…" : "Up, up, and away →"}
             </button>
             {status && (
-              <span className="text-xs text-[var(--ds-neutral-500)]">
+              <span className="text-xs text-[var(--ds-neutral-400)]">
                 {status}
-                {status.startsWith("Something went wrong") && (
-                  <>
-                    {" "}
-                    <a
-                      href="mailto:joseyjhu@gmail.com"
-                      className="text-[var(--ds-accent-300)]"
-                    >
-                      joseyjhu@gmail.com
-                    </a>
-                    .
-                  </>
-                )}
               </span>
             )}
           </div>
-        </div>
+        </form>
       </section>
 
       <section className="mt-16">
