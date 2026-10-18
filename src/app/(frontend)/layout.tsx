@@ -59,12 +59,15 @@ export default function RootLayout({
         {renderHeadCustomCode(customScripts?.headEnd, "head-end")}
       </head>
       <body
-        suppressHydrationWarning
-        className="min-h-screen bg-[var(--ds-bg)] text-[var(--ds-text)] antialiased"
-      >
-          </a>
-        )}
-        <div id="root" tabIndex={-1}>
+      suppressHydrationWarning
+      className="min-h-screen bg-[var(--ds-bg)] text-[var(--ds-text)] antialiased"
+    >
+      {addBypassLinks && (
+        <a href="#root" className="sr-only focus:not-sr-only">
+          Skip to content
+        </a>
+      )}
+      <div id="root" tabIndex={-1}>
           {children}
         </div>
         {googleAnalyticsId && (
