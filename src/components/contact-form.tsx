@@ -77,7 +77,7 @@ export function ContactForm() {
     setIsSubmitting(true)
     setStatus("Sending…")
 
-    const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID || "xzzblkgv"
+    const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID || "xppqnynz"
 
     try {
       const response = await fetch(`https://formspree.io/f/${formId}`, {
@@ -115,7 +115,7 @@ export function ContactForm() {
       setSenderEmail("")
       setSubject("")
       setMessage("")
-      setStatus("Note sent! Talk soon.")
+      setStatus("Note sent!")
     } catch (err: unknown) {
       const msg =
         err instanceof Error &&
