@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&family=Liu+Jian+Mao+Cao&family=Playfair+Display:wght@400;500;600&display=swap");
+@import "tailwindcss";
+
+:root {
+  --ds-bg: #0f0e0b;
+  --ds-text: #e8e3d8;
+  --ds-surface: #181612;
+  --ds-divider: rgba(200, 185, 160, 0.14);
+  --ds-accent: #c4975a;
+  --ds-accent-300: #dfc080;
+  --ds-accent-400: #c4975a;
+  --ds-accent-600: #8a6832;
+  --ds-accent-700: #6b5028;
+  --ds-accent-900: #22180a;
+  --ds-neutral-300: #b8b2a6;
+  --ds-neutral-400: #8a8478;
+  --ds-neutral-500: #6a645a;
+  --ds-neutral-600: #4e4844;
+  --ds-neutral-700: #38342e;
+  --ds-neutral-800: #2a2520;
+  --ds-neutral-900: #1a1712;
+  --ds-radius-md: 6px;
+  --ds-radius-lg: 10px;
+  --ds-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+@theme inline {
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-chinese: "Liu Jian Mao Cao", "STKaiti", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ds-bg);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+a {
+  text-decoration: none;
+}
+
+.content-divider {
+  background: linear-gradient(
+    90deg,
+    var(--ds-divider),
+    var(--ds-divider) calc(100% - 120px),
+    transparent
+  );
+}
+
+.full-divider {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ds-divider) 64px,
+    var(--ds-divider) calc(100% - 64px),
+    transparent
+  );
+}
+
+.figma-custom-code-fragment {
+  display: contents;
+}
+
+.figma-bypass-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2147483647;
+  transform: translateY(-150%);
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  padding: 8px 12px;
+  font: 600 14px/1.2 system-ui, sans-serif;
+  text-decoration: none;
+}
+
+.figma-bypass-link:focus {
+  transform: translateY(0);
+}
