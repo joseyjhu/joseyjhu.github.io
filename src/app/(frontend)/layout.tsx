@@ -52,17 +52,16 @@ export default function RootLayout({
   const addBypassLinks = makeSiteSettings.accessibility?.addBypassLinks === true
   const customScripts = makeSiteSettings.customScripts
 
-  return (
-    <html lang={language}>
+    return (
+    <html lang={language} suppressHydrationWarning>
       <head>
         {renderHeadCustomCode(customScripts?.headStart, "head-start")}
         {renderHeadCustomCode(customScripts?.headEnd, "head-end")}
       </head>
-      <body className="min-h-screen bg-[var(--ds-bg)] text-[var(--ds-text)] antialiased">
-        <BodyCustomCode html={customScripts?.bodyStart} />
-        {addBypassLinks && (
-          <a className="figma-bypass-link" href="#root">
-            Skip to content
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-[var(--ds-bg)] text-[var(--ds-text)] antialiased"
+      >
           </a>
         )}
         <div id="root" tabIndex={-1}>
