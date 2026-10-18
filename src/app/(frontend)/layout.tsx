@@ -8,11 +8,11 @@ import {
 } from "@/lib/make-site-settings"
 import "./styles.css"
 
-const defaultTitle = "Josephina Hu"
+const defaultTitle = "Josephina (Josey) Hu"
 const title = makeSiteSettings.title ?? defaultTitle
 const description =
   makeSiteSettings.description ??
-  "Josephina Hu — strategy, operations, research, and fiction."
+  "Josephina (Josey) Hu is a fiction writer and professional in AI data and research based in New York. Explore her work and her favorite media."
 const favicon = makeSiteSettings.icons?.icon
 const socialImage = makeSiteSettings.openGraph?.image
 const googleAnalyticsId = sanitizeHtmlAttribute(
